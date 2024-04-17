@@ -12,10 +12,32 @@ const createCar = async (req, res) => {
 
 // Read
 
+// Get all cars
+const getCars = async (req, res) => {
+  try {
+    const cars = await Car.find()
+    res.status(200).json(cars)
+  } catch (error) {
+    res.status(400).json({ msg: 'Error getting cars', error })
+  }
+}
+
+// Get car by id
+const getCarById = async (req, res) => {
+  try {
+    const cars = await Car.findById(req.params.carId)
+    res.status(200).json(cars)
+  } catch (error) {
+    res.status(400).json({ msg: 'Error getting car by id', error })
+  }
+}
+
 // Update
 
 // Delete
 
 export {
-  createCar
+  createCar,
+  getCars,
+  getCarById
 }
